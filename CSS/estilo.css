@@ -1,0 +1,717 @@
+/* Gradiente da Logo */
+.titulo-gradiente {
+    font-weight: bold !important;
+    background: linear-gradient(to right, #C4B5FD, #8B5CF6) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+}
+
+/* Fundo do site inteiro */
+body {
+    background-color: #0A0918 !important; 
+    color: #ffffff !important;
+}
+
+/* Nossa Navbar Customizada */
+.navbar-custom {
+    background-color: #100d1e !important;
+    border-bottom: 2px solid #272062 !important; 
+}
+
+/* Linha vertical separando as postagens das curiosidades */
+.borda-vertical {
+    border-left: 2px solid #272062;
+    padding-left: 20px;
+}
+
+/* --- RESPONSIVIDADE DO CONTEÚDO --- */
+.conteudo-blog {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+@media (min-width: 992px) {
+    .conteudo-blog {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+}
+
+/* --- BOTÕES DE FILTRO CUSTOMIZADOS --- */
+
+/* Botão Selecionado (Ativo) */
+.btn-filtro-ativo {
+    background-color: #A78BFA !important;
+    border: 2px solid #A78BFA !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.btn-filtro-ativo:hover, 
+.btn-filtro-ativo:focus, 
+.btn-filtro-ativo:active {
+    background-color: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+/* Botão Não Selecionado (Outline) */
+.btn-filtro-outline {
+    background-color: transparent !important;
+    border: 2px solid #A78BFA !important;
+    color: #A78BFA !important;
+    font-weight: 600;
+}
+
+.btn-filtro-outline:hover, 
+.btn-filtro-outline:focus {
+    background-color: rgba(167, 139, 250, 0.15) !important;
+    border-color: #A78BFA !important;
+    color: #A78BFA !important;
+    box-shadow: none !important;
+}
+
+/* --- TELA DE LOGIN --- */
+
+/* Imagem do Observatório na esquerda */
+.login-bg-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Painel escuro da direita */
+.login-panel {
+    background-color: #070612 !important;
+    min-height: 100vh;
+}
+
+/* Linha divisória abaixo do slogan */
+.linha-divisora-login {
+    border-top: 1px solid #272062 !important;
+    opacity: 0.8;
+}
+
+/* Campos de entrada (Inputs) com borda roxa */
+.input-login {
+    background-color: #0b091c !important;
+    border: 1px solid #3c2a78 !important;
+    color: #ffffff !important;
+    padding: 10px 14px;
+    border-radius: 4px;
+}
+
+.input-login::placeholder {
+    color: #5d5685 !important;
+}
+
+.input-login:focus {
+    border-color: #A78BFA !important;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.3) !important;
+}
+
+/* Botão de Entrar */
+.btn-entrar {
+    background-color: transparent !important;
+    border: 1px solid #4f36a8 !important;
+    color: #ffffff !important;
+    padding: 10px;
+    font-size: 1.05rem;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-entrar:hover {
+    background-color: #4f36a8 !important;
+    border-color: #4f36a8 !important;
+    color: #ffffff !important;
+}
+
+/* Link de cadastro */
+.link-cadastro {
+    color: #8c85b5 !important;
+    transition: color 0.2s ease;
+}
+
+.link-cadastro:hover {
+    color: #A78BFA !important;
+}
+
+/* --- TELA DE CADASTRO --- */
+
+/* Fundo da tela de cadastro com a imagem do observatório */
+.cadastro-bg {
+    background-image: url('../imagens/observatory_nebula.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Card centralizado escuro com borda roxa */
+.cadastro-card {
+    background-color: #070612;
+    border: 1px solid #3c2a78;
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* --- TELA DE REGISTRAR OBSERVAÇÃO --- */
+
+/* Avatar circular com as iniciais */
+.avatar-circulo {
+    width: 42px;
+    height: 42px;
+    background-color: #5B3FC4;
+    border-radius: 50%;
+    font-size: 0.95rem;
+    border: 2px solid #3c2a78;
+}
+
+/* Card central do Formulário */
+.form-observacao-card {
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos das Seções do Formulário */
+.form-secao-titulo {
+    color: #A78BFA;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Inputs e Selects do Formulário */
+.input-astro {
+    background-color: #0b091c !important;
+    border: 1px solid #3c2a78 !important;
+    color: #ffffff !important;
+    padding: 10px 14px;
+    border-radius: 4px;
+}
+
+.input-astro::placeholder {
+    color: #5d5685 !important;
+}
+
+.input-astro:focus {
+    border-color: #A78BFA !important;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.3) !important;
+}
+
+/* Badge de 'Ver locais' */
+.badge-locais {
+    background-color: #5B3FC4;
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.badge-locais:hover {
+    background-color: #704ce6;
+    color: #ffffff;
+}
+
+/* Area de Upload de Imagem Tracejada */
+.upload-box {
+    border: 2px dashed #3c2a78;
+    border-radius: 6px;
+    background-color: #0b091c;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.upload-box:hover {
+    border-color: #A78BFA;
+    background-color: rgba(167, 139, 250, 0.05);
+}
+
+/* Botões do Formulário */
+.btn-cancelar {
+    background-color: transparent !important;
+    border: 1px solid #3c2a78 !important;
+    color: #ffffff !important;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.btn-cancelar:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.btn-submeter {
+    background-color: #633ecf !important;
+    border: none !important;
+    color: #ffffff !important;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.btn-submeter:hover {
+    background-color: #734beb !important;
+}
+
+/* --- TELA LOCAIS DE OBSERVAÇÃO --- */
+
+.locais-card {
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.table-locais {
+    --bs-table-bg: transparent;
+    --bs-table-color: #a7a2c4;
+    border-color: #272062;
+}
+
+.table-locais th {
+    color: #79719e;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #272062;
+    padding-bottom: 14px;
+}
+
+.table-locais td {
+    border-bottom: 1px solid #272062;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.btn-local-add {
+    background-color: #633ecf;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-local-add:hover {
+    background-color: #734beb;
+    color: #ffffff;
+}
+
+.acao-icon {
+    color: #a7a2c4;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    background: none;
+    border: none;
+    text-decoration: none;
+    padding: 2px 6px;
+}
+
+.acao-icon:hover {
+    color: #ffffff;
+}
+
+/* --- TELA GERENCIAMENTO DE USUÁRIOS --- */
+
+/* Campo de Busca no Cabeçalho */
+.input-busca-astro {
+    background-color: #0b091c;
+    border: 1px solid #3c2a78;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    width: 220px;
+    transition: all 0.2s ease;
+}
+
+.input-busca-astro::placeholder {
+    color: #5d5685;
+}
+
+.input-busca-astro:focus {
+    outline: none;
+    border-color: #A78BFA;
+    box-shadow: 0 0 6px rgba(167, 139, 250, 0.3);
+}
+
+/* Badge de Status Admin */
+.badge-admin {
+    background-color: #5B3FC4;
+    color: #ffffff;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* --- TELA BLOG / FEED DE POSTAGENS --- */
+
+.postagem-card {
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.avatar-circulo {
+    width: 40px;
+    height: 40px;
+    background-color: #5B3FC4;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.badge-oficial {
+    background-color: #7C3AED; 
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.4); 
+}
+
+.badge-comunidade {
+    background-color: #231B42; 
+    color: #A78BFA;            
+    border: 1px solid #3C2A78; 
+    font-size: 0.75rem;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.post-img-placeholder {
+    width: 100%;
+    height: 220px;
+    background-color: #3e3d48;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8c88a5;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.post-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-like {
+    background: none;
+    border: none;
+    color: #a7a2c4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.btn-like:hover {
+    color: #ffffff;
+}
+
+/* --- TELA VISÃO GERAL / DASHBOARD --- */
+
+.stat-card {
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card .number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.stat-card .label {
+    color: #a7a2c4;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.dash-card {
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.table-dash {
+    --bs-table-bg: transparent;
+    --bs-table-color: #ffffff;
+    border-color: #272062;
+}
+
+.table-dash th {
+    color: #79719e;
+    font-weight: 600;
+    font-size: 0.82rem;
+    border-bottom: 1px solid #272062;
+    padding-bottom: 10px;
+}
+
+.table-dash td {
+    border-bottom: 1px solid #272062;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 0.88rem;
+}
+
+.table-compact th, .table-compact td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 0.82rem;
+}
+
+/* --- BOTÃO HAMBÚRGUER PERSONALIZADO (ROXO) --- */
+.btn-hamburger-astro {
+    background-color: #231B42;
+    border: 1px solid #3C2A78 !important;
+    color: #A78BFA;
+    padding: 6px 10px;
+    border-radius: 6px;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.btn-hamburger-astro:hover,
+.btn-hamburger-astro[aria-expanded="true"] {
+    background-color: #5B3FC4;
+    color: #ffffff;
+    border-color: #5B3FC4 !important;
+    box-shadow: 0 0 10px rgba(91, 63, 196, 0.5);
+}
+
+/* ==========================================================================
+   TELA SISTEMA SOLAR (ISOLADO PARA NÃO AFETAR A NAVBAR NEM O BOOTSTRAP)
+   ========================================================================== */
+
+.pagina-sistema-solar .divisor {
+    border: none;
+    height: 1px;
+    background-color: #8B5CF6;
+}
+
+.pagina-sistema-solar .divisor-suave {
+    border: none;
+    height: 1px;
+    background-color: #8B5CF6;
+    margin: 30px 0;
+}
+
+.pagina-sistema-solar .planeta-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.pagina-sistema-solar .planeta-card.reverso {
+    flex-direction: row-reverse;
+}
+
+.pagina-sistema-solar .planeta-imagem {
+    flex: 0 0 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagina-sistema-solar .planeta-imagem img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+
+.pagina-sistema-solar .planeta-info {
+    flex: 1;
+}
+
+.pagina-sistema-solar .planeta-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.pagina-sistema-solar .planeta-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.pagina-sistema-solar .badges {
+    display: flex;
+    gap: 6px;
+}
+
+.pagina-sistema-solar .badge {
+    background-color: #5b21b6;
+    color: #e9d5ff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pagina-sistema-solar .planeta-info p {
+    color: #b3acc8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.pagina-sistema-solar .btn-voltar {
+    background-color: #A78BFA;
+    color: #ffffff;
+    border: none;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pagina-sistema-solar .btn-voltar:hover {
+    background-color: #8B5CF6;
+}
+
+/* Responsividade do Sistema Solar */
+@media (max-width: 640px) {
+    .pagina-sistema-solar .planeta-card,
+    .pagina-sistema-solar .planeta-card.reverso {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pagina-sistema-solar .planeta-header {
+        justify-content: center;
+    }
+
+    .pagina-sistema-solar .planeta-imagem {
+        flex: initial;
+    }
+}
+
+/* TELA INÍCIO / DASHBOARD
+
+/* Botões menores em roxo (Nova Postagem e Adicionar Postagem) */
+.btn-acao-dash {
+    background-color: #633ecf;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.btn-acao-dash:hover {
+    background-color: #734beb;
+}
+
+/* Caixa com o ícone de + gigante */
+.box-add-icon {
+    background-color: #4c3b82;
+    border-radius: 8px;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Caixas de data dos Próximos Eventos */
+.data-box {
+    background-color: #4c3b82;
+    border-radius: 8px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.data-box .dia {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.data-box .mes {
+    font-size: 0.7rem;
+    color: #e9d5ff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Linha divisória entre os itens de eventos */
+.evento-item {
+    border-bottom: 1px solid #272062;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.evento-item:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.nome-local{
+    display: flex;
+}
