@@ -133,10 +133,11 @@
 
         <!-- Título do Post -->
         <h5 class="fw-bold text-white mt-3 mb-2"><?= $linha['titulo'] ?></h5>
+        <p class="fw-bold text-white mt-3 mb-2"><?= $linha['descricao'] ?></p>
 
         <!-- Container / Placeholder da Imagem -->
         <div class="post-img-placeholder">
-            <i class="bi bi-image fs-1"></i>
+            <img src="../../imagens/NebulosaBlog.png" alt="Imagem dos cosmos">
         </div>
 
         <!-- Footer do Card (Curtidas) -->

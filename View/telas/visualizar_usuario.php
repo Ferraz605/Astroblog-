@@ -1,5 +1,29 @@
 <?php 
     namespace Astroblog\View\telas;
+    
+    require_once('../../DAO/Conexao.php');
+    require_once('../../DAO/Consultar.php');
+    require_once('../../DAO/Excluir.php');
+    require_once('../../DAO/Atualizar.php');
+
+    use AstroBlog\DAO\Atualizar;
+    use AstroBlog\DAO\Conexao;
+    use AstroBlog\DAO\Consultar;
+    use AstroBlog\DAO\Excluir;
+
+    $conexao = new Conexao();
+    $consultar = new Consultar();
+    $atualizar = new Atualizar();
+    $excluir = new Excluir(); 
+
+    if(isset($_GET['excluir'])){
+        $idParaExcluir = (int) $_GET['excluir'];
+        $excluir->ExcluirEquipamento($conexao, $idParaExcluir);
+        header('Location: visualizar_usuario.php');
+        exit;
+    }
+
+    $locais = $consultar->consultarUsuarios($conexao);
 ?>
 
 <!DOCTYPE html>
@@ -57,71 +81,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- USUÁRIO 1 (ADMIN) -->
-                        <tr>
-                            <td class="fw-bold text-white">Astroblog+</td>
-                            <td class="text-white fw-semibold">Jorelma@gmail.com</td>
-                            <td class="text-white fw-semibold">02 mar 2026</td>
-                            <td>
-                                <span class="badge-admin">Admin</span>
-                            </td>
-                            <td class="text-end pe-3">
-                                <button class="acao-icon" title="Promover / Alterar Permissão">
-                                    <i class="bi bi-arrow-up-circle-fill fs-5"></i>
-                                </button>
-                                <button class="acao-icon" title="Excluir Usuário">
-                                    <i class="bi bi-x-lg fs-6"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php while ($linha = mysqli_fetch_assoc($locais)): ?>
+                            <tr>
+                                    <td class="fw-bold text-white"><?= $linha['nome'] ?></td>
+                                    <td class="text-white fw-semibold"><?= $linha['email'] ?></td>
+                                    <td class="text-white fw-semibold"><?= $linha['dataCadastro'] ?></td>
+                                    <td>
+                                        <span class="badge-admin"><?= $linha['tipo'] ?></span>
+                                    </td>
+                                    <td class="text-end pe-3">
+                                        <button class="acao-icon" title="Promover / Alterar Permissão" onclick="return confirm('Tem certeza que deseja realizar esse alteração?');">
+                                            <i class="bi bi-arrow-up-circle-fill fs-5">
+                                                <?php 
 
-                        <!-- USUÁRIO 2 -->
-                        <tr>
-                            <td class="fw-bold text-white">Marina T.</td>
-                            <td class="text-white fw-semibold">Maria.T@gmail.com</td>
-                            <td class="text-white fw-semibold">12 mar 2026</td>
-                            <td class="text-white fw-semibold">Usuario</td>
-                            <td class="text-end pe-3">
-                                <button class="acao-icon" title="Promover / Alterar Permissão">
-                                    <i class="bi bi-arrow-up-circle-fill fs-5"></i>
-                                </button>
-                                <button class="acao-icon" title="Excluir Usuário">
-                                    <i class="bi bi-x-lg fs-6"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- USUÁRIO 3 -->
-                        <tr>
-                            <td class="fw-bold text-white">Pedro L.</td>
-                            <td class="text-white fw-semibold">Pedro.L@gmail.com</td>
-                            <td class="text-white fw-semibold">28 abr 2026</td>
-                            <td class="text-white fw-semibold">Usuario</td>
-                            <td class="text-end pe-3">
-                                <button class="acao-icon" title="Promover / Alterar Permissão">
-                                    <i class="bi bi-arrow-up-circle-fill fs-5"></i>
-                                </button>
-                                <button class="acao-icon" title="Excluir Usuário">
-                                    <i class="bi bi-x-lg fs-6"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- USUÁRIO 4 -->
-                        <tr>
-                            <td class="fw-bold text-white">Ana C.</td>
-                            <td class="text-white fw-semibold">Ana.C@gamail.com</td>
-                            <td class="text-white fw-semibold">02 ago 2026</td>
-                            <td class="text-white fw-semibold">Usuario</td>
-                            <td class="text-end pe-3">
-                                <button class="acao-icon" title="Promover / Alterar Permissão">
-                                    <i class="bi bi-arrow-up-circle-fill fs-5"></i>
-                                </button>
-                                <button class="acao-icon" title="Excluir Usuário">
-                                    <i class="bi bi-x-lg fs-6"></i>
-                                </button>
-                            </td>
-                        </tr>
+                                                ?>
+                                            </i>
+                                        </button>
+                                        <button class="acao-icon" title="Excluir Usuário">
+                                            <i class="bi bi-x-lg fs-6"></i>
+                                        </button>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>

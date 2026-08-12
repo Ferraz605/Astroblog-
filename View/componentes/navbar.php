@@ -19,11 +19,11 @@
         <!-- "order-2" para ficar ao lado do logo no celular, "order-lg-3" para ir pro final no desktop -->
         <div class="dropdown order-2 order-lg-3">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle foto-perfil-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Menu do Usuário">
-                <img src="../imagens/usuario.png" alt="Foto do Usuário" class="rounded-circle border border-2 border-secondary" width="45" height="45" style="object-fit: cover;">
+                <img src="../../imagens/usuario.png" alt="Foto do Usuário" class="rounded-circle border border-2 border-secondary" width="45" height="45" style="object-fit: cover;">
             </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-lg mt-2">
                 <li>
-                    <a class="dropdown-item text-danger fw-semibold d-flex align-items-center gap-2" href="../index.html">
+                    <a class="dropdown-item text-danger fw-semibold d-flex align-items-center gap-2" href="../../index.php">
                         Deseja sair?
                     </a>
                 </li>
@@ -40,18 +40,31 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white fw-semibold" data-bs-toggle="dropdown" href="#" role="button">Blog</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="blog.html">Geral</a></li>
-                        <li><a class="dropdown-item" href="registrar_observacao.html">Nova Observação</a></li>
+                        <li><a class="dropdown-item" href="../telas/blog.php">Geral</a></li>
+                        <li><a class="dropdown-item" href="../telas/registrar_observacao.php">Nova Observação</a></li>
+                        <li><a class="dropdown-item" href="#">Eventos</a></li>
+
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="../telas/sistema_solar.php">Sistema Solar</a>
+                </li>
+
+              <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="../telas/equipamentos.php">Equipamentos</a>
+                </li>
+
+              <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="../telas/locais_observacao.php">Locais</a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white fw-semibold" data-bs-toggle="dropdown" href="#" role="button">Gerenciamento</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="visao_geral.html">Geral</a></li>
-                        <li><a class="dropdown-item" href="visualizar_usuario.html">Visualizar Usuários</a></li>
-                        <li><a class="dropdown-item" href="equipamentos.html">Equipamentos</a></li>
                         <li><a class="dropdown-item" href="#">Eventos</a></li>
-                        <li><a class="dropdown-item" href="#">Curiosidades</a></li>
+                        <li><a class="dropdown-item" href="../telas/visualizar_usuario.php">Visualizar Usuários</a></li>
+
                     </ul>
                 </li>
             </ul>

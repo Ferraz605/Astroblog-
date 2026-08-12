@@ -113,6 +113,7 @@ function ConsultarUsuario(conexao $conexao,String $Usuario)
             echo" Algo deu errado <br> <br> $erro";
         }
     }// Fim do CONSULTAR TIPO
+
     
     
 ###############################################################
@@ -163,6 +164,13 @@ public function consultarObservacoes(Conexao $conexao){
             FROM Observacao o 
             LEFT JOIN Usuario u ON o.UsuarioId = u.idUsuario 
             ORDER BY o.dataObservacao DESC";
+    $resultado = mysqli_query($conn, $sql);
+    return $resultado;
+}
+
+public function consultarUsuarios(Conexao $conexao) {
+    $conn = $conexao->conectar();
+    $sql = "SELECT * FROM Usuario";
     $resultado = mysqli_query($conn, $sql);
     return $resultado;
 }

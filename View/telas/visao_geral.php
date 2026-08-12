@@ -1,5 +1,21 @@
 <?php 
     namespace Astroblog\View\telas;
+    session_start(['nome']);
+    require_once('../../DAO/Conexao.php');
+    require_once('../../DAO/Consultar.php');
+    require_once('../../DAO/Cadastrar.php');
+
+    use AstroBlog\DAO\Conexao;
+    use AstroBlog\DAO\Consultar;
+    use AstroBlog\DAO\Cadastrar;
+
+    $conexao = new Conexao();
+    $consultar = new Consultar();
+    $cadastrar = new Cadastrar();
+
+    $mensagem = '';
+    $locais = $consultar->consultarUsuarios($conexao);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,25 +58,31 @@
         <div class="row g-3 mb-4">
             <div class="col-6 col-md-3">
                 <div class="stat-card text-center">
-                    <div class="number">3.482</div>
+                    <div class="number">
+                        <?php $mensagem = $cadastrar->contarUsuario($conexao);
+                        echo $mensagem?></div>
                     <div class="label">Usuarios Cadastrados</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="stat-card text-center">
-                    <div class="number">12.905</div>
-                    <div class="label">Observações registradas</div>
+              <div class="stat-card text-center">
+                    <div class="number">
+                        <?php $mensagem = $cadastrar->contarObservacoes($conexao);
+                        echo $mensagem?></div>
+                    <div class="label">Observações Registradas</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="stat-card text-center">
-                    <div class="number">7.214</div>
-                    <div class="label">Curtidas no blog</div>
+                    <div class="number">
+                        <?php $mensagem = $cadastrar->contarCurtida($conexao);
+                        echo $mensagem?></div>
+                     <div class="label">Curtidas no blog</div>          
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="stat-card text-center">
-                    <div class="number">58</div>
+                    <div class="number">0</div>
                     <div class="label">Postagens publicadas</div>
                 </div>
             </div>
@@ -142,59 +164,18 @@
                                 <tr>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">E-mail</th>
-                                    <th scope="col" class="text-center">Observações</th>
                                     <th scope="col" class="text-end pe-1">Cadastro</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>   
+                                  <?php while ($linha = mysqli_fetch_assoc($locais)):?>
                                 <tr>
-                                    <td class="fw-bold text-white">Marina T.</td>
-                                    <td class="text-white small">marina.t@email.com</td>
-                                    <td class="text-center text-white">34</td>
-                                    <td class="text-end pe-1 text-white">12 mar 2026</td>
+                                    <td class="fw-bold text-white"><?= $linha['nome']?></td>
+                                    <td class="text-white small"><?= $linha['email'] ?></td>
+                                    <td class="text-center text-white"><?= $linha['dataCadastro'] ?></td>
                                 </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Pedro L.</td>
-                                    <td class="text-white small">pedro.lima@email.com</td>
-                                    <td class="text-center text-white">19</td>
-                                    <td class="text-end pe-1 text-white">28 abr 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Ana C.</td>
-                                    <td class="text-white small">ana.costa@email.com</td>
-                                    <td class="text-center text-white">07</td>
-                                    <td class="text-end pe-1 text-white">02 ago 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">José K.</td>
-                                    <td class="text-white small">jose.k@email.com</td>
-                                    <td class="text-center text-white">19</td>
-                                    <td class="text-end pe-1 text-white">23 abr 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Felipe F.</td>
-                                    <td class="text-white small">felipe.f@email.com</td>
-                                    <td class="text-center text-white">23</td>
-                                    <td class="text-end pe-1 text-white">10 jun 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Valentino</td>
-                                    <td class="text-white small">valentino.v@email.com</td>
-                                    <td class="text-center text-white">67</td>
-                                    <td class="text-end pe-1 text-white">12 jul 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Fernanda</td>
-                                    <td class="text-white small">fernanda.t@email.com</td>
-                                    <td class="text-center text-white">09</td>
-                                    <td class="text-end pe-1 text-white">30 jan 2026</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold text-white">Vitoria</td>
-                                    <td class="text-white small">vitoria.t@email.com</td>
-                                    <td class="text-center text-white">01</td>
-                                    <td class="text-end pe-1 text-white">09 ago 2026</td>
-                                </tr>
+                        <?php endwhile; ?>
+
                             </tbody>
                         </table>
                     </div>

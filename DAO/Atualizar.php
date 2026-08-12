@@ -160,6 +160,14 @@ function atualizarLocalEspecifico(Conexao $conexao,int $codigo,string $campo,str
     }
  }// fim do AtualizarObservação
 
+ function AlterarTipoUsuario(string $tipo){
+  if($tipo == 'admin'){
+    $tipo = 'usuario';
+  } else {
+    $tipo = 'admin';
+  }
+ }
+
 } // fim da classe atualizar 
 
 ?>

@@ -55,7 +55,7 @@
             $resultado = mysqli_query($conn,$sql);
             $dados = mysqli_fetch_assoc($resultado);
 
-            echo "Total de Usuários: ".$dados['total']; 
+            return $dados['total']; 
         } // FIM DE CONTAR USUARIO
 
         public function contarCurtida(Conexao $conexao){
@@ -64,10 +64,35 @@
             $resultado = mysqli_query($conn,$sql);
             $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
 
-            echo "Total de curtidas: ".$dados['total'];
-
-        
+            return $dados['total'];
         } // FIM DE CONTAR CURTIDA
+
+        public function contarObservacoes(Conexao $conexao){
+            $conn = $conexao->conectar(); // ABRE CONEXAO
+            $sql = "select count(contarObservacao) As total from Observacao";
+            $resultado = mysqli_query($conn,$sql);
+            $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
+
+            return $dados['total'];
+        } // FIM DE CONTAR OBSERVAÇÔES
+
+        public function contarEventos(Conexao $conexao){
+            $conn = $conexao->conectar(); // ABRE CONEXAO
+            $sql = "select count(contarEvento   ) As total from EventoAstronomico";
+            $resultado = mysqli_query($conn,$sql);
+            $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
+
+            return $dados['total'];            
+        }
+
+        public function contarObjetos(Conexao $conexao){
+            $conn = $conexao->conectar(); // ABRE CONEXAO
+            $sql = "select count(objetoObservado) As total from Observacao";
+            $resultado = mysqli_query($conn,$sql);
+            $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
+
+            return $dados['total'];            
+        }
 
 ####################################################################################
         public function cadastrarLocal(Conexao $conexao, String $nomeLocal, String $cidade, String $estado, String $pais, String $descricao){

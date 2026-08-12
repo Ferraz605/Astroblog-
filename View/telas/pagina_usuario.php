@@ -1,5 +1,21 @@
 <?php 
     namespace Astroblog\View\telas;
+    session_start();
+    
+    require_once('../../DAO/Conexao.php');
+    require_once('../../DAO/Consultar.php');
+    require_once('../../DAO/Cadastrar.php');
+
+    use AstroBlog\DAO\Conexao;
+    use AstroBlog\DAO\Consultar;
+    use AstroBlog\DAO\Cadastrar;
+
+    $conexao = new Conexao();
+    $consultar = new Consultar();
+    $cadastrar = new Cadastrar();
+
+    $mensagem = '';
+
 ?>
 
 <!doctype html>
@@ -34,7 +50,10 @@
 
         <!-- CABEÇALHO -->
         <header class="mb-4">
-            <h1 class="fw-bold text-white mb-2 fs-2">Bem-vindo, [Usuario]</h1>
+            <h1 class="fw-bold text-white mb-2 fs-2">Bem-vindo, <?php 
+            $mensagem = $_SESSION['usuario'];
+            echo $mensagem;
+            ?></h1>
             <p class="text-secondary mb-0">O céu de hoje está com boa visibilidade na sua região.</p>
         </header>
 
@@ -47,19 +66,34 @@
                 <div class="row g-3 mb-4">
                     <div class="col-4">
                         <div class="stat-card h-100">
-                            <div class="number">47</div>
+                            <div class="number">
+                                <?php 
+                                    $mensagem = $cadastrar->contarObservacoes($conexao);
+                                    echo $mensagem;
+                                ?>
+                            </div>
                             <div class="label">Observações registradas</div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="stat-card h-100">
-                            <div class="number">23</div>
-                            <div class="label">Objetos catalogados</div>
+                            <div class="number"><?php 
+                                $mensagem = $cadastrar->contarObjetos($conexao);
+                                echo $mensagem;
+                                ?>
+                            </div>
+                            <div class="label">Objetos Catalogados</div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="stat-card h-100">
-                            <div class="number">9</div>
+                            <div class="number">
+                                <?php 
+                                    $mensagem = $cadastrar->contarEventos($conexao);
+                                    echo $mensagem;
+                                ?>
+                            
+                            </div>
                             <div class="label">Eventos acompanhados</div>
                         </div>
                     </div>
@@ -126,7 +160,7 @@
                             <p class="text-secondary mb-3" style="font-size: 0.85rem; line-height: 1.3;">
                                 Adicione um novo objeto ao seu histórico com data, instrumento e notas.
                             </p>
-                            <button class="btn-acao-dash w-100"> <a href="./registrar_observacao.php">Adicionar postagem</a></button>
+                            <button class="btn-acao-dash w-100"> <a href="./registrar_observacao.php" style="text-decoration: none; color:white;">Adicionar postagem</a></button>
                         </div>
                     </div>
                 </div>
