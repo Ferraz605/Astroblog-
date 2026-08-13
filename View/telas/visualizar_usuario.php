@@ -16,14 +16,21 @@
     $atualizar = new Atualizar();
     $excluir = new Excluir(); 
 
-    if(isset($_GET['excluir'])){
-        $idParaExcluir = (int) $_GET['excluir'];
-        $excluir->ExcluirEquipamento($conexao, $idParaExcluir);
+    if(isset($_GET['excluirUsuario'])){
+        $idParaExcluir = (int) $_GET['excluirUsuario'];
+        $excluir->ExcluirUsuario($conexao, $idParaExcluir);
         header('Location: visualizar_usuario.php');
         exit;
     }
 
-    $locais = $consultar->consultarUsuarios($conexao);
+    if(isset($_GET['alternarTipo'])){
+        $idParaAlterar = (int) $_GET['alternarTipo'];
+        $atualizar->alternarTipoUsuario($conexao, $idParaAlterar);
+        header('Location: visualizar_usuario.php');
+        exit;
+}
+
+    $usuarios = $consultar->consultarUsuarios($conexao);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($linha = mysqli_fetch_assoc($locais)): ?>
+                        <?php while ($linha = mysqli_fetch_assoc($usuarios)): ?>
                             <tr>
                                     <td class="fw-bold text-white"><?= $linha['nome'] ?></td>
                                     <td class="text-white fw-semibold"><?= $linha['email'] ?></td>
@@ -89,19 +96,20 @@
                                     <td>
                                         <span class="badge-admin"><?= $linha['tipo'] ?></span>
                                     </td>
-                                    <td class="text-end pe-3">
-                                        <button class="acao-icon" title="Promover / Alterar Permissão" onclick="return confirm('Tem certeza que deseja realizar esse alteração?');">
-                                            <i class="bi bi-arrow-up-circle-fill fs-5">
-                                                <?php 
-
-                                                ?>
-                                            </i>
-                                        </button>
-                                        <button class="acao-icon" title="Excluir Usuário">
-                                            <i class="bi bi-x-lg fs-6"></i>
-                                        </button>
-                                </td>
-                            </tr>
+                                        <td class="text-end pe-3">
+                                            <a href="visualizar_usuario.php?alternarTipo=<?= $linha['idUsuario'] ?>" class="acao-icon" title="Promover / Alterar Permissão" onclick="return confirm('Tem certeza que deseja realizar essa alteração?');">
+                                                <?php if($linha['tipo'] === 'admin'): ?>
+                                                    <i class="bi bi-arrow-down-circle-fill fs-5"></i>
+                                                <?php else: ?>
+                                                    <i class="bi bi-arrow-up-circle-fill fs-5"></i>
+                                                <?php endif; ?>
+                                            </a>
+                                            <a href="visualizar_usuario.php?excluirUsuario=<?= $linha['idUsuario'] ?>" class="acao-icon" title="Excluir Usuário" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                                <i class="bi bi-x-lg fs-6"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    
                         <?php endwhile; ?>
                     </tbody>
                 </table>

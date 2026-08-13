@@ -170,7 +170,7 @@ public function consultarObservacoes(Conexao $conexao){
 
 public function consultarUsuarios(Conexao $conexao) {
     $conn = $conexao->conectar();
-    $sql = "SELECT * FROM Usuario";
+    $sql = "SELECT * FROM Usuario WHERE idUsuario != 1";
     $resultado = mysqli_query($conn, $sql);
     return $resultado;
 }
@@ -290,7 +290,7 @@ function consultarObservacaoEspecifica(conexao $conexao,int $codigo)
         try
             {
             $conn=$conexao-> conectar();// abre a conexao 
-            $sql="select * from Observacao where idLocal = '$codigo'";
+            $sql="select * from Observacao where idObservercao = '$codigo'";
             $result=mysqli_query($conn,$sql);
 
             $dados = mysqli_fetch_array($result);
@@ -305,7 +305,36 @@ function consultarObservacaoEspecifica(conexao $conexao,int $codigo)
         }
  }// fim do consultarLocal 
 
+ function consultarEventoEspecifico(conexao $conexao,int $codigo)
+    {
+        try
+            {
+            $conn=$conexao-> conectar();// abre a conexao 
+            $sql="select * from EventoAstronomico where idEventoAstronomico = '$codigo'";
+            $result=mysqli_query($conn,$sql);
 
+            $dados = mysqli_fetch_array($result);
+                
+            return $dados;    
+
+            }// fim do TRY 
+
+        catch(Exception $erro)
+        {
+            echo" Algo deu errado <br> <br> $erro";
+        }
+ }// fim do consultarLocal 
+
+public function consultarObservacoesPorUsuario(Conexao $conexao, int $usuarioId){
+    $conn = $conexao->conectar();
+    $sql = "SELECT o.idObservercao, o.titulo, o.categoria,
+                   (SELECT COUNT(*) FROM Curtida c WHERE c.ObservacaoId = o.idObservercao) AS totalCurtidas
+            FROM Observacao o
+            WHERE o.UsuarioId = '$usuarioId'
+            ORDER BY o.dataObservacao DESC";
+    $resultado = mysqli_query($conn, $sql);
+    return $resultado;
+}
 }// fim da classe Consultar 
 
 ?>

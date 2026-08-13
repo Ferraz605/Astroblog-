@@ -215,7 +215,7 @@
 
         <!-- BOTÃO VOLTAR -->
         <div class="acoes mt-5">
-            <button class="btn-voltar w-100" onclick="history.back()">Voltar</button>
+            <button class="btn-voltar w-100"><a href="./sistema_solar.php" style="text-decoration: none; color:white;">Voltar</a></button>
         </div>
 
     </main>

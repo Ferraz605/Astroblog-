@@ -10,21 +10,25 @@
 
     class Excluir
     {
-        function ExcluirUsuario(Conexao $conexao,int $codigo){
-            try{
-                $conn = $conexao->conectar();
-                $sql = "Delete from Usuario where idUsuario = '$codigo'";
-                $resultado = mysqli_query($conn,$sql);
+        public function ExcluirUsuario(Conexao $conexao, int $idUsuario){
+            $conn = $conexao->conectar();
 
-                if($resultado){
-                    return "<br><br>Usuario excluido com sucesso!";
-                }
-                return "<br><br>Usuario não excluido";
-            }catch(Exception $error){
-                echo $error;
-            } // FIM DO TRY E KAT
-        } // FIM DA FUNÇÂO EXCLUIR USUARIO
+            $sqlCurtidasFeitas = "DELETE FROM Curtida WHERE UsuarioId = '$idUsuario'";
+            mysqli_query($conn, $sqlCurtidasFeitas);
 
+            $sqlCurtidasRecebidas = "DELETE FROM Curtida WHERE ObservacaoId IN (SELECT idObservercao FROM Observacao WHERE UsuarioId = '$idUsuario')";
+            mysqli_query($conn, $sqlCurtidasRecebidas);
+
+            $sqlObservacoes = "DELETE FROM Observacao WHERE UsuarioId = '$idUsuario'";
+            mysqli_query($conn, $sqlObservacoes);
+
+            $sqlUsuario = "DELETE FROM Usuario WHERE idUsuario = '$idUsuario'";
+            $resultado = mysqli_query($conn, $sqlUsuario);
+
+            mysqli_close($conn);
+
+            return $resultado;
+        }
         function ExcluirLocal(Conexao $conexao,int $codigo){
             try{
                 $conn = $conexao->conectar();

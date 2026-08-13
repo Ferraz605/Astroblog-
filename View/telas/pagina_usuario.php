@@ -16,6 +16,10 @@
 
     $mensagem = '';
 
+    $usuarioIdLogado = $_SESSION['idUsuario'] ?? 0;
+    $minhasObservacoes = $consultar->consultarObservacoesPorUsuario($conexao, $usuarioIdLogado);
+    $info_Eventos = $consultar->consultarEventos($conexao);
+
 ?>
 
 <!doctype html>
@@ -45,54 +49,55 @@
     <!-- NAVBAR CARREGADA DINAMICAMENTE -->
     <div id="navbar-container"></div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="container my-5" style="max-width: 1000px;">
+    <!-- CONTEÚDO PRINCIPAL (Fluido como visao_geral.html) -->
+    <main class="container-fluid px-md-5 my-4">
 
-        <!-- CABEÇALHO -->
+        <!-- CABEÇALHO DA PÁGINA -->
         <header class="mb-4">
             <h1 class="fw-bold text-white mb-2 fs-2">Bem-vindo, <?php 
             $mensagem = $_SESSION['usuario'];
             echo $mensagem;
             ?></h1>
-            <p class="text-secondary mb-0">O céu de hoje está com boa visibilidade na sua região.</p>
+            <p class="text-secondary mb-0">Acompanhe suas observações, eventos e novidades da comunidade.</p>
         </header>
 
+        <!-- PAINÉIS PRINCIPAIS -->
         <div class="row g-4">
             
             <!-- COLUNA ESQUERDA -->
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-xl-8">
                 
                 <!-- Cards de Estatísticas -->
-                <div class="row g-3 mb-4">
-                    <div class="col-4">
-                        <div class="stat-card h-100">
+                <div class="row g-3 mb-4" cardstal>
+                    <div class="col-12 col-sm-4 cardw">
+                        <div class="stat-card text-center h-100">
                             <div class="number">
                                 <?php 
-                                    $mensagem = $cadastrar->contarObservacoes($conexao);
-                                    echo $mensagem;
+                                $mensagem = $cadastrar->contarObservacoes($conexao);
+                                echo $mensagem;
                                 ?>
                             </div>
                             <div class="label">Observações registradas</div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="stat-card h-100">
-                            <div class="number"><?php 
+                    <div class="col-12 col-sm-4 cardw">
+                        <div class="stat-card text-center h-100">
+                            <div class="number">
+                                <?php 
                                 $mensagem = $cadastrar->contarObjetos($conexao);
                                 echo $mensagem;
                                 ?>
                             </div>
-                            <div class="label">Objetos Catalogados</div>
+                            <div class="label">Objetos catalogados</div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="stat-card h-100">
+                    <div class="col-12 col-sm-4 cardw">
+                        <div class="stat-card text-center h-100">
                             <div class="number">
                                 <?php 
                                     $mensagem = $cadastrar->contarEventos($conexao);
                                     echo $mensagem;
                                 ?>
-                            
                             </div>
                             <div class="label">Eventos acompanhados</div>
                         </div>
@@ -100,62 +105,49 @@
                 </div>
 
                 <!-- Tabela Últimas Postagens -->
-                <div class="dash-card">
+                <div class="dash-card UltPost">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="text-white fw-bold mb-0">Ultimas postagens</h5>
+                        <h5 class="text-white fw-bold mb-0 fs-5">Últimas postagens</h5>
                     </div>
                     
                     <div class="table-responsive">
-                        <table class="table table-dash mb-0">
+                        <table class="table table-dash align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th>Título</th>
-                                    <th>Categoria</th>
-                                    <th class="text-end">Curtidas</th>
+                                    <th scope="col" style="width: 50%;">Título</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col" class="text-end pe-2">Curtidas</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Guia de compra: primeiro telescópio</td>
-                                    <td>Curiosidade</td>
-                                    <td class="text-end">543</td>
-                                </tr>
-                                <tr>
-                                    <td>Guia de compra: segundo telescópio</td>
-                                    <td>Evento</td>
-                                    <td class="text-end">102</td>
-                                </tr>
-                                <tr>
-                                    <td>Guia de compra: terceiro telescópio</td>
-                                    <td>Curiosidade</td>
-                                    <td class="text-end">98</td>
-                                </tr>
-                                <tr>
-                                    <td>Guia de compra: quarto telescópio</td>
-                                    <td>Evento</td>
-                                    <td class="text-end">10</td>
-                                </tr>
+                                <tbody>
+                                <?php while($linha = mysqli_fetch_assoc($minhasObservacoes)): ?>
+                                    <tr>
+                                        <td class="fw-bold text-white"><?= $linha['titulo'] ?></td>
+                                        <td class="text-white"><?= ucfirst($linha['categoria']) ?></td>
+                                        <td class="text-end pe-2 text-white"><?= $linha['totalCurtidas'] ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
                     
-                    <div class="text-center mt-4 pt-2">
-                        <span class="text-secondary" style="font-size: 0.9rem;">Fim do registro</span>
+                    <div class="text-center pt-4 pb-2 text-secondary fw-semibold small">
+                        Fim do registro
                     </div>
                 </div>
 
             </div>
 
             <!-- COLUNA DIREITA -->
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-xl-4">
                 
                 <!-- Registrar Observação -->
                 <div class="dash-card mb-4">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="box-add-icon">
+                        <div class="box-add-icon flex-shrink-0">
                             <i class="bi bi-plus-lg fs-1"></i>
                         </div>
-                        <div>
+                        <div class="w-100">
                             <h6 class="text-white fw-bold mb-1 fs-5">Registrar observação</h6>
                             <p class="text-secondary mb-3" style="font-size: 0.85rem; line-height: 1.3;">
                                 Adicione um novo objeto ao seu histórico com data, instrumento e notas.
@@ -166,44 +158,46 @@
                 </div>
 
                 <!-- Próximos Eventos -->
-                <div class="dash-card">
-                    <h5 class="text-white fw-bold mb-4">Proximos Eventos</h5>
+                <div class="dash-card PostEvento">
+                    <h5 class="text-white fw-bold mb-4 fs-5">Próximos Eventos</h5>
 
-                    <div class="evento-item d-flex gap-3">
-                        <div class="data-box">
-                            <span class="dia">12</span>
+                    <div class="evento-item d-flex gap-3 mb-3">
+                        <div class="data-box flex-shrink-0">
+                            <span class="dia">20</span>
                             <span class="mes">AGO</span>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                            <span class="text-white fw-semibold">Chuva de meteoros Perseidas</span>
-                            <span class="text-secondary" style="font-size: 0.85rem;">Pico após meia-noite</span>
+                            <span class="text-white fw-semibold">Perseidas</span>
+                            <span class="text-secondary" style="font-size: 0.85rem;">Pico de atividade após a meia-noite, melhor visibilidade longe da cidade.</span>
                         </div>
                     </div>
 
-                    <div class="evento-item d-flex gap-3">
-                        <div class="data-box">
+                    <div class="evento-item d-flex gap-3 mb-3">
+                        <div class="data-box flex-shrink-0">
                             <span class="dia">19</span>
-                            <span class="mes">AGO</span>
+                            <span class="mes">OUT</span>
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                            <span class="text-white fw-semibold">Lua cheia do Esturjão</span>
-                            <span class="text-secondary" style="font-size: 0.85rem;">Boa visibilidade de crateras</span>
+                            <span class="text-white fw-semibold">Eclipse solar parcial</span>
+                            <span class="text-secondary" style="font-size: 0.85rem;">Use óculos apropriados — não observe diretamente sem filtro solar.</span>
                         </div>
                     </div>
 
-                    <div class="evento-item d-flex gap-3">
-                        <div class="data-box">
-                            <span class="dia">02</span>
-                            <span class="mes">SET</span>
+                    <?php while($linha = mysqli_fetch_assoc($info_Eventos)): ?>
+                        <div class="evento-item d-flex gap-3 mb-3">
+                            <div class="data-box flex-shrink-0">
+                                <span class="dia"><?= date('d', strtotime($linha['dataEvento'])) ?></span>
+                                <span class="mes"><?= strtoupper(date('M', strtotime($linha['dataEvento']))) ?></span>
+                            </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                <span class="text-white fw-semibold"><?= $linha['nomeEvento'] ?></span>
+                                <span class="text-secondary" style="font-size: 0.85rem;"><?= $linha['descricao'] ?></span>
+                            </div>
                         </div>
-                        <div class="d-flex flex-column justify-content-center">
-                            <span class="text-white fw-semibold">Conjunção Vênus-Marte</span>
-                            <span class="text-secondary" style="font-size: 0.85rem;">Visível ao anoitecer</span>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>
 
-                    <div class="text-center mt-4">
-                        <span class="text-secondary" style="font-size: 0.9rem;">Fim dos eventos</span>
+                    <div class="text-center pt-4 pb-2 text-secondary fw-semibold small">
+                        Fim dos eventos
                     </div>
                 </div>
 

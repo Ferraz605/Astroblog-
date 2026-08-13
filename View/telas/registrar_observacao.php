@@ -67,16 +67,12 @@
                     <input type="text" class="form-control input-astro" id="titulo" name="titulo" placeholder="Digite o título..." required>
                 </div>
 
-                <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                        <label for="objeto" class="form-label text-white fw-semibold small">Objeto observado</label>
-                        <input type="text" class="form-control input-astro" id="objeto" name="objeto" placeholder="Digite o objeto observado..." required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="tipo_objeto" class="form-label text-white fw-semibold small">Tipo de objeto</label>
-                        <input type="text" class="form-control input-astro" id="tipo_objeto" name="tipo_objeto" placeholder="Digite o tipo de objeto..." required>
-                    </div>
+
+                <div class="mb-3">
+                    <label for="titulo" class="form-label text-white fw-semibold small">Objeto Observado</label>
+                    <input type="text" class="form-control input-astro" id="titulo" name="objeto" placeholder="Digite o título..." required>
                 </div>
+
 
                     <label for="tipo_objeto" class="form-label text-white fw-semibold small">Categoria</label>
                         <select class="form-select input-astro" id="categoria" name="categoria" required>

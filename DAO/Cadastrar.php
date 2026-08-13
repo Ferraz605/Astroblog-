@@ -78,7 +78,7 @@
 
         public function contarEventos(Conexao $conexao){
             $conn = $conexao->conectar(); // ABRE CONEXAO
-            $sql = "select count(contarEvento   ) As total from EventoAstronomico";
+            $sql = "select count(contarEvento) As total from EventoAstronomico";
             $resultado = mysqli_query($conn,$sql);
             $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
 

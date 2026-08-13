@@ -715,3 +715,187 @@ body {
 .nome-local{
     display: flex;
 }
+
+/* TELA EVENTOS ASTRONÔMICOS
+
+/* Botões de Filtros (Pills) */
+.filter-pill {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #4c3b82;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+    border-color: #8B5CF6;
+    color: #e9d5ff;
+}
+
+.filter-pill.active {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    color: #ffffff;
+}
+
+/* Card Principal do Evento */
+.card-evento {
+    background-color: #120e29;
+    border: 1px solid #282052;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+}
+
+.card-evento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-evento-acoes {
+    display: flex;
+    gap: 8px;
+    color: #a39bbd;
+    font-size: 0.9rem;
+}
+
+.card-evento-acoes i {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.card-evento-acoes i:hover {
+    color: #ffffff;
+}
+
+/* Badge roxa no topo do card */
+.badge-categoria {
+    background-color: #633ecf;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    text-align: right;
+}
+
+/* Corpo do Card (Texto + Imagem lado a lado) */
+.card-evento-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.card-evento-texto {
+    flex: 1;
+}
+
+.card-evento-titulo {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.card-evento-desc {
+    color: #9d95b7;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    margin-bottom: 0;
+}
+
+.card-evento-img {
+    flex: 0 0 90px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-evento-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo base do botão de curtida */
+.btn-like {
+    background: transparent;
+    border: none;
+    color: #a0a0a0; /* Cor padrão (descurtido) */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Efeito ao passar o mouse */
+.btn-like:hover {
+    color: #ff4757;
+    background-color: rgba(255, 71, 87, 0.1);
+}
+
+/* Estado do botão quando estiver CURTIDO */
+.btn-like.curtido {
+    color: #ff4757; /* Vermelho/Rosa do coração */
+    font-weight: 600;
+}
+
+.btn-like.curtido i {
+    color: #ff4757;
+}
+
+/* Animação do Coração (Pop / Pulse) */
+@keyframes heartPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4); /* Expande 40% */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Classe aplicada via JS apenas no momento do clique para acionar a animação */
+.animar-coracao {
+    animation: heartPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.UltPost{
+    height: 100%;
+}
+
+.PostEvento{
+    height: 100%;
+}
+
+.cardstal{
+    align-items: center;
+}
+
+.cardw{
+    height: 145px;
+}
+
+.SemL{
+    text-decoration: none;
+    color: white;
+}

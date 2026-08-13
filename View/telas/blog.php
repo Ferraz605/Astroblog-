@@ -1,5 +1,6 @@
 <?php 
     namespace Astroblog\View\telas;
+    session_start(); 
 
     require_once('../../DAO/Conexao.php');
     require_once('../../DAO/Consultar.php');
@@ -96,6 +97,45 @@
         <!-- LISTA DE POSTAGENS (FEED) -->
         <div class="d-flex flex-column gap-4" id="lista-postagens">
 
+            <div class="postagem-card postagem" data-tipo="comunidade">
+                <!-- Cabeçalho do Card -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circulo"></div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-white">Marina T.</span>
+                                <span class="badge-comunidade">Comunidade</span>
+                            </div>
+                            <small class="text-secondary" style="font-size: 0.8rem;">30 jun · Astrofotografia</small>
+                        </div>
+                    </div>
+                    <!-- Ações -->
+
+                </div>
+
+                <!-- Título do Post -->
+                <h5 class="fw-bold text-white mt-3 mb-3">✨ O QUE É UMA NEBULOSA? 🌌</h5>
+
+                <!-- Imagem do Post -->
+                <div class="mb-3">
+                    <img src="../../imagens/O que é uma nebulosa.png" alt="O que é uma nebulosa?" class="img-fluid rounded w-100" style="max-height: 400px; object-fit: cover;">
+                </div>
+
+                <!-- Texto do Post -->
+                <p class="text-light mb-3" style="font-size: 0.95rem; line-height: 1.6; text-align: justify;">
+                    Uma nebulosa é, essencialmente, um berçário de estrelas. Imagine nuvens gigantescas flutuando no espaço, compostas por poeira cósmica e gases como hidrogênio e hélio. Elas são as estruturas mais coloridas e fascinantes do universo, formadas quando estrelas morrem e expelem suas camadas externas ou quando a gravidade começa a agrupar matéria para dar à luz novos sistemas solares. Em resumo, as nebulosas representam tanto o fim quanto o início de tudo o que conhecemos no cosmos: são poeira estelar em sua forma mais pura e vibrante.
+                </p>
+
+                <!-- Footer do Card (Curtidas) -->
+                <div>
+                    <button class="btn-like">
+                        <i class="bi bi-heart fs-5"></i>
+                        <span>0 likes</span>
+                    </button>
+                </div>
+            </div>
+
             <?php while($linha = mysqli_fetch_assoc($locais)): ?>
     <div class="postagem-card postagem" data-tipo="<?= $linha['categoria'] ?>">
         <!-- Cabeçalho do Card -->
@@ -116,11 +156,12 @@
                     <small class="text-secondary" style="font-size: 0.8rem;"><?= date('d M', strtotime($linha['dataObservacao'])) ?> · <?= $linha['objetoObservado'] ?></small>
                 </div>
             </div>
-            <!-- Ações -->
             <div>
-                <button class="acao-icon" title="Recarregar/Sincronizar">
-                    <i class="bi bi-arrow-repeat fs-5"></i>
-                </button>
+                <?php if(($_SESSION['idUsuario'] ?? null) == $linha['UsuarioId']): ?>
+                        <a href="Atualizar_Registro.php?idObservercao=<?= $linha['idObservercao'] ?>" class="acao-icon" title="Editar">
+                        <i class="bi bi-arrow-repeat fs-5"></i>
+                    </a>
+                <?php endif; ?>
 
                 <?php if(($_SESSION['tipo'] ?? '') === 'admin' || ($_SESSION['idUsuario'] ?? null) == $linha['UsuarioId']): ?>
                     <a href="blog.php?excluir=<?= $linha['idObservercao'] ?>" class="acao-icon" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir esta postagem?');">
@@ -133,18 +174,26 @@
 
         <!-- Título do Post -->
         <h5 class="fw-bold text-white mt-3 mb-2"><?= $linha['titulo'] ?></h5>
-        <p class="fw-bold text-white mt-3 mb-2"><?= $linha['descricao'] ?></p>
 
         <!-- Container / Placeholder da Imagem -->
         <div class="post-img-placeholder">
             <img src="../../imagens/NebulosaBlog.png" alt="Imagem dos cosmos">
         </div>
 
-        <!-- Footer do Card (Curtidas) -->
+        <p class="text-light mb-3" style="font-size: 0.95rem; line-height: 1.6; text-align: justify;"><?= $linha['descricao'] ?></p>
+
+
+        <?php
+            $sqlCurtida = "SELECT COUNT(*) AS total FROM Curtida WHERE ObservacaoId = '{$linha['idObservercao']}'";
+            $totalCurtidas = mysqli_fetch_assoc(mysqli_query($conexao->conectar(), $sqlCurtida))['total'];
+
+            $sqlJaCurtiu = "SELECT idCurtida FROM Curtida WHERE ObservacaoId = '{$linha['idObservercao']}' AND UsuarioId = '" . ($_SESSION['idUsuario'] ?? 0) . "'";
+            $jaCurtiu = mysqli_fetch_assoc(mysqli_query($conexao->conectar(), $sqlJaCurtiu));
+        ?>
         <div>
-            <button class="btn-like">
-                <i class="bi bi-heart fs-5"></i>
-                <span>0 likes</span>
+            <button class="btn-like <?= $jaCurtiu ? 'curtido' : '' ?>" data-id="<?= $linha['idObservercao'] ?>">
+                <i class="bi <?= $jaCurtiu ? 'bi-heart-fill' : 'bi-heart' ?> fs-5"></i>
+                <span><?= $totalCurtidas ?> likes</span>
             </button>
         </div>
     </div>

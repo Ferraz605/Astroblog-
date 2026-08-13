@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="estado" class="form-label text-white fw-semibold small">Data do evento</label>
-                        <input type="text" class="form-control input-astro" id="data_evento" name="data_evento" placeholder="DD/MM/AAAA..." required>
+                        <input type="date" class="form-control input-astro" id="data_evento" name="data_evento" placeholder="DD/MM/AAAA..." required>
                     </div>
                 </div>
 
@@ -77,10 +77,10 @@
                 <!-- BOTÕES DE AÇÃO -->
                 <div class="row g-3 pt-2">
                     <div class="col-6">
-                        <a href="locais_observacao.php" class="btn btn-cancelar w-100">Cancelar</a>
+                        <a href="eventos.php" class="btn btn-cancelar w-100">Cancelar</a>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-submeter w-100">Cadastrar Local
+                        <button type="submit" class="btn btn-submeter w-100">Cadastrar Evento
                             <?php 
                                 if(isset($_POST['nome_evento'])){
                                     $nome_evento = $_POST['nome_evento'];
@@ -93,7 +93,7 @@
                                     }
 
                                     if ($mensagem){
-                                        header('Location: blog.php');
+                                        header('Location: eventos.php');
                                         exit;
                                     }
                              }

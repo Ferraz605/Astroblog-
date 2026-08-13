@@ -1,3 +1,9 @@
+<?php
+    namespace Astroblog\View\componentes;
+    session_start();
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-custom p-3">
     <!-- O container nativo do Bootstrap já gerencia o alinhamento corretamente -->
     <div class="container-fluid">
@@ -34,15 +40,25 @@
         <!-- "order-3" para cair pra linha de baixo no celular, "order-lg-2" para ficar no centro no desktop -->
         <div class="collapse navbar-collapse justify-content-center order-3 order-lg-2" id="navbarConteudo">
             <ul class="navbar-menu nav nav-pills gap-2 my-3 my-lg-0">
+
+            <?php if($_SESSION['tipo'] == 'admin'):?>
                 <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold" href="blog.html">Início</a>
+                    <a class="nav-link text-white fw-semibold" href="visao_geral.php">Início</a>
                 </li>
+            <?php endif; ?>
+
+            <?php if($_SESSION['tipo'] == 'usuario'):?>
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="pagina_usuario.php">Início</a>
+                </li>
+            <?php endif; ?>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white fw-semibold" data-bs-toggle="dropdown" href="#" role="button">Blog</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="../telas/blog.php">Geral</a></li>
+                         <li><a class="dropdown-item" href="../telas/eventos.php">Eventos</a></li>
                         <li><a class="dropdown-item" href="../telas/registrar_observacao.php">Nova Observação</a></li>
-                        <li><a class="dropdown-item" href="#">Eventos</a></li>
 
                     </ul>
                 </li>
@@ -59,15 +75,18 @@
                     <a class="nav-link text-white fw-semibold" href="../telas/locais_observacao.php">Locais</a>
                 </li>
 
+                <?php if($_SESSION['tipo'] == 'admin'):?>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white fw-semibold" data-bs-toggle="dropdown" href="#" role="button">Gerenciamento</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Eventos</a></li>
+                        <li><a class="dropdown-item" href="../telas/novo_Evento.php">Eventos</a></li>
                         <li><a class="dropdown-item" href="../telas/visualizar_usuario.php">Visualizar Usuários</a></li>
-
                     </ul>
                 </li>
             </ul>
+       <?php endif; ?>
+
         </div>
 
     </div>
