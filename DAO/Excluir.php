@@ -59,20 +59,26 @@
             } // FIM DO TRY E KAT
         } // FIM DA FUNÇÂO EXCLUIR EQUIPAMENTO
 
-        function ExcluirObservacao(Conexao $conexao,int $codigo){
+        function ExcluirObservacao(Conexao $conexao, int $codigo){
             try{
                 $conn = $conexao->conectar();
-                $sql = "Delete from Observacao where idObservercao = '$codigo'";
-                $resultado = mysqli_query($conn,$sql);
 
-                if($resultado){
-                    return "<br><br>Observação excluida com sucesso!";
+                // Apaga curtidas dessa observação primeiro (senão a FK bloqueia)
+                $sqlCurtidas = "DELETE FROM Curtida WHERE ObservacaoId = '$codigo'";
+                mysqli_query($conn, $sqlCurtidas);
+
+                $sql = "DELETE FROM Observacao WHERE idObservercao = '$codigo'";
+                $resultado = mysqli_query($conn, $sql);
+
+                if(!$resultado){
+                    echo "<br><br>Observação não excluída! Erro: " . mysqli_error($conn);
                 }
-                return "<br><br>Observação não excluida";
+
+                return $resultado;
             }catch(Exception $error){
                 echo $error;
-            } // FIM DO TRY E KAT
-        } // FIM DA FUNÇÂO EXCLUIR OBSERVACAO
+            }
+        }
 
         function ExcluirEvento(Conexao $conexao,int $codigo){
             try{

@@ -16,7 +16,7 @@
             </button>
 
             <!-- Logo -->
-            <a class="navbar-brand titulo-gradiente m-0 fs-4" href="blog.html">
+            <a class="navbar-brand titulo-gradiente m-0 fs-4" href="blog.php">
                 AstroBlog+
             </a>
         </div>

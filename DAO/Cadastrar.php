@@ -60,7 +60,7 @@
 
         public function contarCurtida(Conexao $conexao){
             $conn = $conexao->conectar(); // ABRE CONEXAO
-            $sql = "select count(curtida) As total from Usuario";
+            $sql = "select count(idCurtida) As total from Curtida";
             $resultado = mysqli_query($conn,$sql);
             $dados = mysqli_fetch_assoc($resultado);//serve para extrair uma linha de resultado de uma consulta
 

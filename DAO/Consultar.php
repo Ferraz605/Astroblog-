@@ -335,6 +335,26 @@ public function consultarObservacoesPorUsuario(Conexao $conexao, int $usuarioId)
     $resultado = mysqli_query($conn, $sql);
     return $resultado;
 }
+
+public function consultarConteudoAdmin(Conexao $conexao){
+    $conn = $conexao->conectar();
+    $sql = "SELECT titulo, 'oficial' AS tipoFiltro, categoria,
+                   (SELECT COUNT(*) FROM Curtida c WHERE c.ObservacaoId = o.idObservercao) AS curtidas,
+                   dataObservacao AS data
+            FROM Observacao o
+            WHERE categoria = 'oficial'
+
+            UNION ALL
+
+            SELECT nomeEvento AS titulo, 'evento' AS tipoFiltro, 'Evento' AS categoria,
+                   0 AS curtidas,
+                   dataEvento AS data
+            FROM EventoAstronomico
+
+            ORDER BY data DESC";
+    $resultado = mysqli_query($conn, $sql);
+    return $resultado;
+}
 }// fim da classe Consultar 
 
 ?>

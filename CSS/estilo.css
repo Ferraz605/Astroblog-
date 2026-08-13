@@ -12,6 +12,7 @@
 body {
     background-color: #0A0918 !important; 
     color: #ffffff !important;
+    height: 100vh;
 }
 
 /* Nossa Navbar Customizada */
@@ -477,6 +478,15 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+.dashs-card{
+    background-color: #100d1e;
+    border: 1px solid #272062;
+    border-radius: 8px;
+    height: 100%;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);  
+}
+
 .table-dash {
     --bs-table-bg: transparent;
     --bs-table-color: #ffffff;
@@ -898,4 +908,24 @@ body {
 .SemL{
     text-decoration: none;
     color: white;
+}
+
+.contflu{
+    height: 80%;
+}
+
+.cadr{
+    height: 80%;
+}
+
+.gerenciarEventos{
+    height: 100%;
+}
+
+.cardinfo{
+    width: 22%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
